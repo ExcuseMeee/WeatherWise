@@ -4,7 +4,7 @@ export type GeoWeatherData = {
   geo: GeolocationData;
   weather: WeatherData;
 };
-export type GeolocationData = {
+type GeolocationData = {
   name: string;
   local_names?: { [key: string]: string };
   lat: number;
@@ -12,7 +12,7 @@ export type GeolocationData = {
   country: string;
   state: string;
 };
-export type WeatherData = {
+type WeatherData = {
   coord: Coord;
   weather: Weather[];
   base: string;
@@ -35,30 +35,33 @@ export async function GET(
   const { location } = params;
 
   const geoResponse: Response = await fetch(
-    `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=${1}&appid=${
+    `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${
       process.env.WEATHER_API_KEY
     }`
   );
 
   const geolocationList: GeolocationData[] = await geoResponse.json();
-  const geoWeatherDataList: GeoWeatherData[] = await Promise.all(
-    geolocationList.map(async (geolocation) => {
-      const weatherResponse: Response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?units=metric&lon=${geolocation.lon}&lat=${geolocation.lat}&appid=${process.env.WEATHER_API_KEY}`
-      );
-      const weatherData: WeatherData = await weatherResponse.json();
-      return { geo: geolocation, weather: weatherData };
-    })
-  );
 
-  if(geoWeatherDataList.length != 0){
-    return NextResponse.json(geoWeatherDataList);
-  } else {
+  if(geolocationList.length == 0){
     return new Response("Unknown Location", {
       status: 400,
-      statusText: "Unknown Location"
+      statusText: "Unkown Location"
     })
+  } else {
+    const geoData: GeolocationData  = geolocationList.at(0)!;
+    const weatherResponse: Response = await fetch(`https://api.openweathermap.org/data/2.5/weather?units=metric&lon=${geoData.lon}&lat=${geoData.lat}&appid=${process.env.WEATHER_API_KEY}`)
+  
+    const weatherData: WeatherData = await weatherResponse.json();
+
+    const geoWeatherData: GeoWeatherData = {
+      geo: geoData,
+      weather: weatherData
+    }
+  
+    return NextResponse.json(geoWeatherData);
   }
+
+
 
 }
 
