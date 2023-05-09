@@ -1,39 +1,34 @@
 "use client";
 import { useState } from "react";
-import { GeoWeatherData } from "../api/[location]/route";
+import WeatherDisplay from "./WeatherDisplay";
 
 const SearchBar = () => {
   const [location, setLocation] = useState("");
+  const [locationBuffer, setLocationBuffer] = useState("");
+  const [open, setOpen] = useState(false);
 
-  async function logGeoWeatherData(location: string) {
-    console.log(location)
-    const response = await fetch(`/api/${location}`);
-    if (response.ok) {
-      const data: GeoWeatherData[] = await response.json();
-      console.log(data);
-    } else {
-      console.log(response.statusText);
-    }
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    setLocation(locationBuffer);
+    setOpen(true);
   }
 
   return (
     <div>
       SearchBar
-      <input
-        type="text"
-        className="border-2"
-        value={location}
-        onChange={(e) => {
-          setLocation(e.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          logGeoWeatherData(location);
-        }}
-      >
-        Fetch
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          required
+          type="text"
+          className="border-2"
+          value={locationBuffer}
+          onChange={(e) => {
+            setLocationBuffer(e.target.value);
+          }}
+        />
+        <input type="submit" />
+      </form>
+      {open && <WeatherDisplay location={location} />}
     </div>
   );
 };

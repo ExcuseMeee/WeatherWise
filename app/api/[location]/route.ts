@@ -45,7 +45,7 @@ export async function GET(
   if(geolocationList.length == 0){
     return new Response("Unknown Location", {
       status: 400,
-      statusText: "Unkown Location"
+      statusText: "Unknown Location"
     })
   } else {
     const geoData: GeolocationData  = geolocationList.at(0)!;
