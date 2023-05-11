@@ -1,16 +1,15 @@
 "use client";
-import { useState } from "react";
-import WeatherDisplay from "./WeatherDisplay";
+import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const SearchBar = () => {
-  const [location, setLocation] = useState("");
-  const [locationBuffer, setLocationBuffer] = useState("");
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
-  function handleSubmit(e: any) {
+  const [location, setLocation] = useState("");
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLocation(locationBuffer);
-    setOpen(true);
+    router.push(location);
   }
 
   return (
@@ -21,14 +20,13 @@ const SearchBar = () => {
           required
           type="text"
           className="border-2"
-          value={locationBuffer}
+          value={location}
           onChange={(e) => {
-            setLocationBuffer(e.target.value);
+            setLocation(e.target.value);
           }}
         />
         <input type="submit" />
       </form>
-      {open && <WeatherDisplay location={location} />}
     </div>
   );
 };
