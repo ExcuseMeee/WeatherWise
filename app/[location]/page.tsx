@@ -1,12 +1,16 @@
-import { GeoWeatherData, GeolocationData, WeatherData } from "@/types";
+import { GeoWeatherData, GeolocationData, WeatherData, Units } from "@/types";
+import WeatherDisplay from "../components/WeatherDisplay";
 
 type PageProps = {
   params: {
     location: string;
   };
+  searchParams: {
+    units: Units;
+  };
 };
 
-async function fetchWeather(location: string) {
+async function fetchWeather(location: string, units: Units = "imperial") {
   const geoResponse: Response = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${process.env.WEATHER_API_KEY}`
   );
@@ -18,7 +22,7 @@ async function fetchWeather(location: string) {
   } else {
     const geoData: GeolocationData = geolocationList.at(0)!;
     const weatherResponse: Response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?units=metric&lon=${geoData.lon}&lat=${geoData.lat}&appid=${process.env.WEATHER_API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?units=${units}&lon=${geoData.lon}&lat=${geoData.lat}&appid=${process.env.WEATHER_API_KEY}`
     );
 
     const weatherData: WeatherData = await weatherResponse.json();
@@ -32,14 +36,15 @@ async function fetchWeather(location: string) {
   }
 }
 
-const WeatherPage = async ({ params }: PageProps) => {
+const WeatherPage = async ({ params, searchParams }: PageProps) => {
   const { location } = params;
-  const data = await fetchWeather(location);
+  const { units } = searchParams;
+  const data = await fetchWeather(location, units);
 
   return (
     <div>
-      THIS IS WeatherPage for {location} 
-      <div>{JSON.stringify(data)}</div>
+      THIS IS WeatherPage for {location}
+      <WeatherDisplay geo={data.geo} weather={data.weather} units={units}/>
     </div>
   );
 };

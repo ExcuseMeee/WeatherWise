@@ -28,6 +28,8 @@ export declare type WeatherData = {
   cod: number;
 };
 
+export declare type Units = "standard" | "imperial" | "metric";
+
 declare type Clouds = {
   all: number;
 };

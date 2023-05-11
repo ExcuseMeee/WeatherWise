@@ -1,4 +1,4 @@
-import SearchBar from './components/SearchBar'
+// import SearchBar from './components/SearchBar'
 import './globals.css'
 
 export const metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`bg-gray-500`}>
-        <SearchBar />
+        {/* <SearchBar /> */}
         {children}
       </body>
     </html>
