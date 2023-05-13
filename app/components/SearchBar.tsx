@@ -7,36 +7,36 @@ const SearchBar = () => {
   const router = useRouter();
 
   const [location, setLocation] = useState("");
-  const [units, setUnits] = useState<Units>("imperial")
+  const [units, setUnits] = useState<Units>("imperial");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if(location.trim()){
+    if (location.trim()) {
       router.push(`${location.trim()}?units=${units}`);
-    }else{
+    } else {
       // do something
-      console.log("no valid string")
+      console.log("no valid string");
     }
   }
 
   return (
-    <div>
-      SearchBar
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={`border-2 border-dotted border-black w-full h-1/2 flex justify-center items-center`}>
+      <div className={`w-2/5 border h-12 flex`}>
+        <div className={`border border-black w-[5%]`}>
+          ICN
+        </div>
         <input
           required
           type="text"
           pattern="^[A-Za-z\s]+$"
-          className="border-2"
           value={location}
           onChange={(e) => {
             setLocation(e.target.value);
           }}
-          
+          className={`rounded-lg w-[95%] focus:outline-none focus:shadow-2xl`}
         />
-        <input type="submit" />
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
