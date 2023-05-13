@@ -11,6 +11,7 @@ type PageProps = {
 };
 
 async function fetchWeather(location: string, units: Units = "imperial") {
+
   const geoResponse: Response = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${process.env.WEATHER_API_KEY}`
   );
@@ -42,7 +43,7 @@ const WeatherPage = async ({ params, searchParams }: PageProps) => {
   const data = await fetchWeather(location, units);
 
   return (
-    <div>
+    <div className={``}>
       THIS IS WeatherPage for {location}
       <WeatherDisplay geo={data.geo} weather={data.weather} units={units}/>
     </div>

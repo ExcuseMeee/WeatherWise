@@ -1,11 +1,11 @@
-import SearchBar from "./components/SearchBar";
+// import SearchBar from "./components/SearchBar";
 
 export default function Home() {
 
   return (
-    <div>
-      HOME PAGE AAAAAAA
-      <SearchBar />
+    <div className="border-2 border-black">
+      Home Page
+      {/* <SearchBar /> */}
     </div>
   )
 }

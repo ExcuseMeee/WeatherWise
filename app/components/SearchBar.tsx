@@ -11,7 +11,12 @@ const SearchBar = () => {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    router.push(`${location}?units=${units}`);
+    if(location.trim()){
+      router.push(`${location.trim()}?units=${units}`);
+    }else{
+      // do something
+      console.log("no valid string")
+    }
   }
 
   return (
@@ -21,11 +26,13 @@ const SearchBar = () => {
         <input
           required
           type="text"
+          pattern="^[A-Za-z\s]+$"
           className="border-2"
           value={location}
           onChange={(e) => {
             setLocation(e.target.value);
           }}
+          
         />
         <input type="submit" />
       </form>
