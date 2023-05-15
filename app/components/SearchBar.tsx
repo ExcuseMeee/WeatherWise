@@ -1,9 +1,14 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Units } from "@/types";
 
 const SearchBar = () => {
+  useEffect(() => {
+    // prefetch random location to prerender location route
+    router.prefetch(`/greenwich?units=imperial`);
+  }, []);
+
   const router = useRouter();
 
   const [location, setLocation] = useState("");
@@ -20,11 +25,12 @@ const SearchBar = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`border-2 border-dotted border-black w-full h-1/2 flex justify-center items-center`}>
+    <form
+      onSubmit={handleSubmit}
+      className={`border-2 border-dotted border-black w-full h-1/2 flex justify-center items-center`}
+    >
       <div className={`w-2/5 border h-12 flex`}>
-        <div className={`border border-black w-[5%]`}>
-          ICN
-        </div>
+        <div className={`border border-black w-[5%]`}>ICN</div>
         <input
           required
           type="text"
