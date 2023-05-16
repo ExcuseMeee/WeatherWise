@@ -2,11 +2,13 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Units } from "@/types";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 
 const SearchBar = () => {
   useEffect(() => {
     // prefetch random location to prerender location route
-    router.prefetch(`/greenwich?units=imperial`);
+    router.prefetch(`/FAKELOCATION?units=imperial`);
   }, []);
 
   const router = useRouter();
@@ -27,10 +29,15 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`border-2 border-dotted border-black w-full h-1/2 flex justify-center items-center`}
+      className="border-2 border-dotted border-red-600 w-full h-1/2 flex justify-center items-center"
     >
-      <div className={`w-2/5 border h-12 flex`}>
-        <div className={`border border-black w-[5%]`}>ICN</div>
+      <div className="flex w-1/2 border-2 border-black h-1/2 rounded-lg">
+        <button
+          className="w-[5%] flex items-center justify-center rounded-full hover:bg-black/10 m-1"
+          type="submit"
+        >
+          <SearchRoundedIcon />
+        </button>
         <input
           required
           type="text"
@@ -39,8 +46,12 @@ const SearchBar = () => {
           onChange={(e) => {
             setLocation(e.target.value);
           }}
-          className={`rounded-lg w-[95%] focus:outline-none focus:shadow-2xl`}
+          className="w-[90%] focus:outline-none bg-transparent"
+          placeholder="Enter a Location..."
         />
+        <div className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer">
+          <SettingsRoundedIcon />
+        </div>
       </div>
     </form>
   );

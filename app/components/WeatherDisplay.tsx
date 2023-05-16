@@ -16,7 +16,7 @@ const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
       <div className={`flex flex-col border`}>
         <div>
           Image: {weather.weather[0]!.icon}
-          <Image src={`https://openweathermap.org/img/wn/${weather.weather[0]!.icon}@2x.png`} alt={"Weather Icon"} width={50} height={50} priority={true}/>
+          <Image src={`https://openweathermap.org/img/wn/${weather.weather[0]!.icon}@2x.png`} alt={"Weather Icon"} width={50} height={50}/>
         </div>
         <div>
           {weather.weather[0]!.description}
