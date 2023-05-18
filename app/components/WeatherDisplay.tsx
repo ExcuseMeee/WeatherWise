@@ -9,15 +9,16 @@ type ComponentProps = {
 
 const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
 
+  // show weather, pressure, humid, wind
+
   return (
     <div className={`border-2 border-black flex flex-col items-center`}>
-      <div className={`flex flex-col border`}>
-        <div>
-          Image: {weather.weather[0]!.icon}
-          <Image src={`https://openweathermap.org/img/wn/${weather.weather[0]!.icon}@2x.png`} alt={"Weather Icon"} width={50} height={50}/>
+      <div className={`flex flex-col`}>
+        <div className="flex justify-center border">
+          <Image src={`https://openweathermap.org/img/wn/${weather.weather[0]!.icon}@4x.png`} alt={"Weather Icon"} width={200} height={200} loading="eager"/>
         </div>
-        <div>
           {weather.weather[0]!.description}
+        <div>
         </div>
       </div>
 

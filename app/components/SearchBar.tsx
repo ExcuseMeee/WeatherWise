@@ -56,7 +56,7 @@ const SearchBar = () => {
       onSubmit={handleSubmit}
       className="w-full h-1/2 flex justify-center items-center"
     >
-      <div className="flex w-1/2 border-2 border-black h-1/2 rounded-lg">
+      <div className="flex w-1/2 border-2 border-black h-2/3 rounded-lg">
         <button
           className="w-[5%] flex items-center justify-center rounded-full hover:bg-black/10 m-1"
           type="submit"
@@ -75,7 +75,7 @@ const SearchBar = () => {
           placeholder="Enter a Location..."
         />
         <div
-          className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer font-medium text-lg"
+          className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer font-medium text-lg select-none"
           onClick={cycle}
         >
           {units == "metric" ? (
