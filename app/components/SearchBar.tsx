@@ -1,20 +1,29 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Units } from "@/types";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
-import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 
 const SearchBar = () => {
-  useEffect(() => {
-    // prefetch random location to prerender location route
-    router.prefetch(`/FAKELOCATION?units=imperial`);
-  }, []);
-
   const router = useRouter();
+  const params = useSearchParams();
 
   const [location, setLocation] = useState("");
-  const [units, setUnits] = useState<Units>("imperial");
+  const [units, setUnits] = useState<Units>(
+    (params.get("units") as Units) || "imperial"
+  );
+
+  useEffect(() => {
+    // prefetch random location to prerender location route
+    if (
+      !sessionStorage.getItem("prefetch") ||
+      sessionStorage.getItem("prefetch") != "true"
+    ) {
+      console.log("prefetch dne...creating prefetch");
+      router.prefetch(`/greenwich?units=imperial`);
+      sessionStorage.setItem("prefetch", "true");
+    }
+  }, []);
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,11 +34,27 @@ const SearchBar = () => {
       console.log("no valid string");
     }
   }
+  function cycle() {
+    switch (units) {
+      case "imperial":
+        setUnits("metric");
+        break;
+      case "metric":
+        setUnits("standard");
+        break;
+      case "standard":
+        setUnits("imperial");
+        break;
+      default:
+        setUnits("imperial");
+        break;
+    }
+  }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-2 border-dotted border-red-600 w-full h-1/2 flex justify-center items-center"
+      className="w-full h-1/2 flex justify-center items-center"
     >
       <div className="flex w-1/2 border-2 border-black h-1/2 rounded-lg">
         <button
@@ -49,8 +74,17 @@ const SearchBar = () => {
           className="w-[90%] focus:outline-none bg-transparent"
           placeholder="Enter a Location..."
         />
-        <div className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer">
-          <SettingsRoundedIcon />
+        <div
+          className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer font-medium text-lg"
+          onClick={cycle}
+        >
+          {units == "metric" ? (
+            <span>&deg;C</span>
+          ) : units == "standard" ? (
+            <span>K</span>
+          ) : (
+            <span>&deg;F</span>
+          )}
         </div>
       </div>
     </form>

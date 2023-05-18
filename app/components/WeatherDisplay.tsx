@@ -9,8 +9,6 @@ type ComponentProps = {
 
 const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
 
-  // console.log(weather)
-
   return (
     <div className={`border-2 border-black flex flex-col items-center`}>
       <div className={`flex flex-col border`}>
