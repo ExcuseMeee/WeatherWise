@@ -16,7 +16,7 @@ export default function RootLayout({
       <body
         className={`bg-gray-500 h-screen w-screen flex flex-col justify-start`}
       >
-        <div className={`h-1/5 flex flex-col justify-center items-center`}>
+        <div className={`h-1/6 flex flex-col justify-center items-center`}>
           <SearchBar />
         </div>
         {children}

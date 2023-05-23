@@ -34,6 +34,7 @@ const SearchBar = () => {
       console.log("no valid string");
     }
   }
+
   function cycle() {
     switch (units) {
       case "imperial":
@@ -54,7 +55,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full h-1/2 flex justify-center items-center"
+      className="w-full h-3/5 flex justify-center items-center"
     >
       <div className="flex w-1/2 border-2 border-black h-2/3 rounded-lg">
         <button
@@ -66,13 +67,13 @@ const SearchBar = () => {
         <input
           required
           type="text"
-          pattern="^[A-Za-z\s]+$"
+          pattern="^[A-Za-z\s]+|\d+$"
           value={location}
           onChange={(e) => {
             setLocation(e.target.value);
           }}
           className="w-[90%] focus:outline-none bg-transparent"
-          placeholder="Enter a Location..."
+          placeholder="Enter a City Location..."
         />
         <div
           className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer font-medium text-lg select-none"

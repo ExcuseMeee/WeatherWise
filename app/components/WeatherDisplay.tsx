@@ -1,6 +1,7 @@
 import { GeolocationData, Units, WeatherData } from "@/types";
 import Image from "next/image";
-import lookup from 'country-code-lookup'
+import LocationInfo from "./LocationInfo";
+import TimeInfo from "./TimeInfo";
 
 type ComponentProps = {
   geo: GeolocationData;
@@ -14,13 +15,13 @@ const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
   }
 
   // show weather, pressure, humid, wind
-  // console.log(lookup.byIso(geo.country))
+  // console.log(geo);
 
   return (
     <div className="border-2 border-black flex flex-col items-center">
-      <div className="w-1/3" >
-        <p className="font-bold text-2xl">{geo.name}</p>
-        <p>{lookup.byIso(geo.country)?.country}, {lookup.byIso(geo.country)?.continent}</p>
+      <div className="w-1/3 flex justify-between">
+        <LocationInfo geo={geo} />
+        <TimeInfo timeShift={weather.timezone} />
       </div>
       <div className="flex flex-col">
         <div className="flex justify-center -mt-12 -mb-14">
@@ -38,9 +39,7 @@ const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
         </div>
       </div>
 
-      <div className="border w-1/3">
-        TEST
-      </div>
+      <div className="border w-1/3">TEST</div>
     </div>
   );
 };
