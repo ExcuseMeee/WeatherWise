@@ -43,7 +43,7 @@ const WeatherPage = async ({ params, searchParams }: PageProps) => {
   const data = await fetchWeather(location, units);
 
   return (
-    <div className="border">
+    <div className="">
       <WeatherDisplay geo={data.geo} weather={data.weather} units={units} />
     </div>
   );

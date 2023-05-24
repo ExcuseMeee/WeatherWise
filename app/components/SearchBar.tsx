@@ -19,7 +19,6 @@ const SearchBar = () => {
       !sessionStorage.getItem("prefetch") ||
       sessionStorage.getItem("prefetch") != "true"
     ) {
-      console.log("prefetch dne...creating prefetch");
       router.prefetch(`/greenwich?units=imperial`);
       sessionStorage.setItem("prefetch", "true");
     }

@@ -2,6 +2,7 @@ import { GeolocationData, Units, WeatherData } from "@/types";
 import Image from "next/image";
 import LocationInfo from "./LocationInfo";
 import TimeInfo from "./TimeInfo";
+import MainInfo from "./MainInfo";
 
 type ComponentProps = {
   geo: GeolocationData;
@@ -18,7 +19,7 @@ const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
   // console.log(geo);
 
   return (
-    <div className="border-2 border-black flex flex-col items-center">
+    <div className="border flex flex-col items-center">
       <div className="w-1/3 flex justify-between">
         <LocationInfo geo={geo} />
         <TimeInfo timeShift={weather.timezone} />
@@ -34,12 +35,11 @@ const WeatherDisplay = ({ geo, weather, units }: ComponentProps) => {
             height={250}
           />
         </div>
-        <div className="text-center">
+        <div className="text-center select-none">
           {capitalizeWords(weather.weather[0]!.description)}
         </div>
       </div>
-
-      <div className="border w-1/3">TEST</div>
+      <MainInfo main={weather.main} units={units} />
     </div>
   );
 };

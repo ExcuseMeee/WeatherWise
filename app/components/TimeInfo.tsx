@@ -8,7 +8,7 @@ const TimeInfo = ({ timeShift }: ComponentProps) => {
   const hours = date.getUTCHours() % 12 === 0 ? 12 : date.getUTCHours() % 12;
 
   return (
-    <div className="flex justify-center items-center select-none">
+    <div className="flex justify-center items-center select-none text-lg font-semibold">
       <time>
         {hours}
         <span>:</span>
