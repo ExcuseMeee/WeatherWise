@@ -1,17 +1,12 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Units } from "@/types";
+import { useRouter } from "next/navigation";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
 const SearchBar = () => {
   const router = useRouter();
-  const params = useSearchParams();
 
   const [location, setLocation] = useState("");
-  const [units, setUnits] = useState<Units>(
-    (params.get("units") as Units) || "imperial"
-  );
 
   useEffect(() => {
     // prefetch random location to prerender location route
@@ -19,7 +14,7 @@ const SearchBar = () => {
       !sessionStorage.getItem("prefetch") ||
       sessionStorage.getItem("prefetch") != "true"
     ) {
-      router.prefetch(`/greenwich?units=imperial`);
+      router.prefetch(`/greenwich`);
       sessionStorage.setItem("prefetch", "true");
     }
   }, []);
@@ -27,13 +22,14 @@ const SearchBar = () => {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (location.trim()) {
-      router.push(`${location.trim()}?units=${units}`);
+      router.push(`${location.trim()}`);
     } else {
       // do something
       console.log("no valid string");
     }
   }
 
+  /*
   function cycle() {
     switch (units) {
       case "imperial":
@@ -50,6 +46,7 @@ const SearchBar = () => {
         break;
     }
   }
+  */
 
   return (
     <form
@@ -74,18 +71,6 @@ const SearchBar = () => {
           className="w-[90%] focus:outline-none bg-transparent"
           placeholder="Enter a City Location..."
         />
-        <div
-          className="flex justify-center items-center w-[5%] rounded-full m-1 hover:bg-black/10 hover:cursor-pointer font-medium text-lg select-none"
-          onClick={cycle}
-        >
-          {units == "metric" ? (
-            <span>&deg;C</span>
-          ) : units == "standard" ? (
-            <span>K</span>
-          ) : (
-            <span>&deg;F</span>
-          )}
-        </div>
       </div>
     </form>
   );
