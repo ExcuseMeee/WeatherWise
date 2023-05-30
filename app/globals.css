@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+  .weatherIcon{
+    @apply flex flex-col items-center justify-center;
+  }
+  .unitSelection{
+    @apply hover:cursor-pointer hover:bg-black/10 px-1;
+  }
+}

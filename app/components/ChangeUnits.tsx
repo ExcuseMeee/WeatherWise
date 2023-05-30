@@ -30,11 +30,26 @@ const ChangeUnits = ({ setUnits }: ComponentProps) => {
       </div>
       <dialog
         ref={dialogRef}
-        className="mx-0 border left-[95%] mt-[2px] bg-transparent p-2 rounded-md"
+        className="mx-0 border left-[95%] mt-[3px] bg-transparent p-0"
       >
-        <div onClick={() => setUnits("imperial")}>Imperial</div>
-        <div onClick={() => setUnits("metric")}>Metric</div>
-        <div onClick={() => setUnits("standard")}>Standard</div>
+        <div
+          className="unitSelection border"
+          onClick={() => setUnits("imperial")}
+        >
+          Imperial
+        </div>
+        <div
+          className="unitSelection border"
+          onClick={() => setUnits("metric")}
+        >
+          Metric
+        </div>
+        <div
+          className="unitSelection border"
+          onClick={() => setUnits("standard")}
+        >
+          Standard
+        </div>
       </dialog>
     </div>
   );
