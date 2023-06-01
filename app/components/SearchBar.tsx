@@ -34,9 +34,9 @@ const SearchBar = () => {
       onSubmit={handleSubmit}
       className="w-full h-3/5 flex justify-center items-center"
     >
-      <div className="flex w-1/2 border-2 border-black h-2/3 rounded-lg">
+      <div className="flex w-1/2 border-2 border-black h-2/3 rounded-lg focus-within:shadow-md">
         <button
-          className="w-[5%] flex items-center justify-center rounded-full hover:bg-black/10 m-1"
+          className="w-[5%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none"
           type="submit"
         >
           <SearchRoundedIcon />

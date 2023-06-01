@@ -19,7 +19,7 @@ export default function RootLayout({
         <div className={`h-1/6 flex flex-col justify-center items-center`}>
           <SearchBar />
         </div>
-        {children}
+        <div className="h-5/6">{children}</div>
       </body>
     </html>
   );

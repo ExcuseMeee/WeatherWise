@@ -7,7 +7,12 @@ type PageProps = {
   };
 };
 
+// function delay(ms: number) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
 async function fetchWeather(location: string) {
+  // await delay(4000);
   const geoResponse: Response = await fetch(
     `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=1&appid=${process.env.WEATHER_API_KEY}`
   );
