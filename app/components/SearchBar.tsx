@@ -29,25 +29,6 @@ const SearchBar = () => {
     }
   }
 
-  /*
-  function cycle() {
-    switch (units) {
-      case "imperial":
-        setUnits("metric");
-        break;
-      case "metric":
-        setUnits("standard");
-        break;
-      case "standard":
-        setUnits("imperial");
-        break;
-      default:
-        setUnits("imperial");
-        break;
-    }
-  }
-  */
-
   return (
     <form
       onSubmit={handleSubmit}

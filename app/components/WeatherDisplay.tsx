@@ -15,7 +15,7 @@ const WeatherDisplay = ({ geo, weather }: ComponentProps) => {
   }
 
   return (
-    <div className="border flex flex-col items-center">
+    <div className="flex flex-col items-center">
       <div className="w-1/3 flex justify-between">
         <LocationInfo geo={geo} />
         <TimeInfo timeShift={weather.timezone} />

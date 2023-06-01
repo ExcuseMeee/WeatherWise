@@ -25,9 +25,9 @@ type Systems = LengthSystems | SpeedSystems | TemperatureSystems;
 type ConvertUnits = LengthUnits | SpeedUnits | TemperatureUnits;
 type Measures = {
   [key in Units]: {
-    temperature: ConvertUnits;
-    windSpeed: ConvertUnits;
-    visibility: ConvertUnits;
+    temperature: TemperatureUnits;
+    windSpeed: SpeedUnits;
+    visibility: LengthUnits;
   };
 };
 
@@ -78,7 +78,7 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
 
   return (
     <div className="w-1/3 mt-4">
-      <ChangeUnits setUnits={setUnits} />
+      <ChangeUnits setUnits={setUnits} units={units} />
       {/* Temperature Display */}
       <div className="text-center text-7xl select-none">
         {convert(main.temp)
