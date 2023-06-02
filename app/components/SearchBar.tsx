@@ -2,6 +2,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import HomeIcon from "@mui/icons-material/Home";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -52,6 +53,14 @@ const SearchBar = () => {
           className="w-[90%] focus:outline-none bg-transparent"
           placeholder="Enter a City Location..."
         />
+        <div
+          className="w-[5%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none hover:cursor-pointer"
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          <HomeIcon />
+        </div>
       </div>
     </form>
   );

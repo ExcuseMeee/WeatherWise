@@ -72,7 +72,6 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
   }, []);
 
   useEffect(() => {
-    console.log("units changed: ", units);
     localStorage.setItem(PREFERRED_UNIT, units);
   }, [units]);
 

@@ -31,7 +31,7 @@ const ChangeUnits = ({ setUnits, units }: ComponentProps) => {
       </div>
       <dialog
         ref={dialogRef}
-        className="mx-0 border-2 border-black left-[95%] mt-[3px] bg-transparent px-0 py-2 rounded-md select-none"
+        className="mx-0 border-2 border-black left-[95%] mt-[3px] bg-transparent px-0 py-2 rounded-md select-none focus:outline-none"
       >
         <div
           className={`unitSelection ${units === "imperial" ? "bg-black/10" : ""}`}
