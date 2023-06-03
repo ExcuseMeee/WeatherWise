@@ -56,7 +56,6 @@ const convert = configureMeasurements<ConvertMeasures, Systems, ConvertUnits>({
 });
 
 const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
-  // todo: convert unit values
 
   const [units, setUnits] = useState<Units>(
     (localStorage.getItem(PREFERRED_UNIT) as Units) || "metric"
