@@ -20,7 +20,7 @@ async function fetchWeather(location: string) {
 
   if (geolocationList.length == 0) {
     // error occured
-    throw new Error("Error: Location Not Found");
+    throw new Error("Location Not Found");
   } else {
     const geoData: GeolocationData = geolocationList.at(0)!;
     const weatherResponse: Response = await fetch(
@@ -44,7 +44,7 @@ const WeatherPage = async ({ params }: PageProps) => {
   const data = await fetchWeather(location);
 
   return (
-    <div className="">
+    <div>
       <WeatherDisplay geo={data.geo} weather={data.weather} />
     </div>
   );

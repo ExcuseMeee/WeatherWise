@@ -11,17 +11,20 @@ export default function Error({
   error: Error;
   reset: () => void;
 }) {
+
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
+
+  
 
   return (
     <div className="flex flex-col items-center justify-center">
       <p>Something went wrong!</p>
       <div className="flex items-center justify-center m-4">
         <ErrorOutlineIcon fontSize="medium" />
-        <p className="font-bold">{error.message}</p>
+        <p className="font-bold">Error: Location Not Found</p>
       </div>
       <div className="flex space-x-10 mt-2">
         <button
