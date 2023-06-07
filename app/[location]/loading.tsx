@@ -8,7 +8,7 @@ export default function Loading() {
         alt="Animated Raincloud"
         width={250}
         height={250}
-        priority
+        priority={true}
       />
       <p>Loading...</p>
     </div>

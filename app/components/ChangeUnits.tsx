@@ -34,20 +34,33 @@ const ChangeUnits = ({ setUnits, units }: ComponentProps) => {
         className="mx-0 border-2 border-black left-[95%] mt-[3px] bg-transparent px-0 py-2 rounded-md select-none focus:outline-none"
       >
         <div
-          className={`unitSelection ${units === "imperial" ? "bg-black/10" : ""}`}
-          onClick={() => setUnits("imperial")}
+          className={`unitSelection ${
+            units === "imperial" ? "bg-black/10" : ""
+          }`}
+          onClick={() => {
+            setUnits("imperial");
+            dialogRef.current?.close();
+          }}
         >
           Imperial
         </div>
         <div
           className={`unitSelection ${units === "metric" ? "bg-black/10" : ""}`}
-          onClick={() => setUnits("metric")}
+          onClick={() => {
+            setUnits("metric");
+            dialogRef.current?.close();
+          }}
         >
           Metric
         </div>
         <div
-          className={`unitSelection ${units === "standard" ? "bg-black/10" : ""}`}
-          onClick={() => setUnits("standard")}
+          className={`unitSelection ${
+            units === "standard" ? "bg-black/10" : ""
+          }`}
+          onClick={() => {
+            setUnits("standard");
+            dialogRef.current?.close();
+          }}
         >
           Standard
         </div>

@@ -29,6 +29,7 @@ const WeatherDisplay = ({ geo, weather }: ComponentProps) => {
             alt={"Weather Icon"}
             width={250}
             height={250}
+            priority={true}
           />
         </div>
         <div className="text-center select-none">

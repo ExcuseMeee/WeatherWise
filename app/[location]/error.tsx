@@ -20,7 +20,7 @@ export default function Error({
   
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center font-mono">
       <p>Something went wrong!</p>
       <div className="flex items-center justify-center m-4">
         <ErrorOutlineIcon fontSize="medium" />
