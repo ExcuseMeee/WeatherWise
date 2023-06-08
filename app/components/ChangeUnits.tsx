@@ -20,7 +20,7 @@ const ChangeUnits = ({ setUnits, units }: ComponentProps) => {
   }
 
   return (
-    <div className="relative top-4 -mt-4">
+    <div className="-mt-4 relative">
       <div className="flex justify-end">
         <div
           className="flex justify-center items-center rounded-full hover:bg-black/10 hover:cursor-pointer"
@@ -31,7 +31,8 @@ const ChangeUnits = ({ setUnits, units }: ComponentProps) => {
       </div>
       <dialog
         ref={dialogRef}
-        className="mx-0 border-2 border-black left-[95%] mt-[3px] bg-transparent px-0 py-2 rounded-md select-none focus:outline-none"
+        // className="mx-0 border-[3px] border-black left-[70%] mt-[3px] bg-gray-500 px-0 py-2 rounded-md select-none focus:outline-none md:left-[65%]"
+        className="border-[3px] border-black bg-gray-500 px-0 py-2 rounded-md select-none focus:outline-none mx-0 left-full -translate-x-full"
       >
         <div
           className={`unitSelection ${

@@ -75,7 +75,7 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
   }, [units]);
 
   return (
-    <div className="w-1/3 mt-4">
+    <div className="lg:w-1/3 mt-4 md:w-1/2 w-4/5">
       <ChangeUnits setUnits={setUnits} units={units} />
       {/* Temperature Display */}
       <div className="text-center text-7xl select-none">

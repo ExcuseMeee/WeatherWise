@@ -15,12 +15,12 @@ const WeatherDisplay = ({ geo, weather }: ComponentProps) => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="w-1/3 flex justify-between">
+    <div className="flex flex-col items-center w-full">
+      <div className="lg:w-1/3 flex justify-between md:w-1/2 w-4/5">
         <LocationInfo geo={geo} />
         <TimeInfo timeShift={weather.timezone} />
       </div>
-      <div className="flex flex-col select-none">
+      <div className="flex flex-col select-none lg:w-1/3 md:w-1/2 w-4/5">
         <div className="flex justify-center -mt-12 -mb-14">
           <Image
             src={`https://openweathermap.org/img/wn/${

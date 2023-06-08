@@ -35,9 +35,9 @@ const SearchBar = () => {
       onSubmit={handleSubmit}
       className="w-full h-3/5 flex justify-center items-center"
     >
-      <div className="flex w-1/2 border-2 border-black h-2/3 rounded-lg focus-within:shadow-md">
+      <div className="flex w-10/12 border-2 border-black h-2/3 rounded-lg focus-within:shadow-md md:w-2/3 lg:w-1/2">
         <button
-          className="w-[5%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none"
+          className="w-[10%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none md:w-[5%]"
           type="submit"
         >
           <SearchRoundedIcon />
@@ -50,13 +50,14 @@ const SearchBar = () => {
           onChange={(e) => {
             setLocation(e.target.value);
           }}
-          className="w-[90%] focus:outline-none bg-transparent"
+          className="w-[80%] focus:outline-none bg-transparent md:w-[90%]"
           placeholder="Enter a City Location..."
         />
         <div
-          className="w-[5%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none hover:cursor-pointer"
+          className="w-[10%] flex items-center justify-center rounded-full m-1 hover:bg-black/10 focus:bg-black/10 focus:outline-none hover:cursor-pointer md:w-[5%]"
           onClick={() => {
             router.push("/");
+            setLocation("");
           }}
         >
           <HomeIcon />

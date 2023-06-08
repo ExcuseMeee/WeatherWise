@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Links = () => {
   return (
-    <div className="flex flex-col font-mono select-none">
+    <div className="flex flex-col font-mono select-none md:text-base text-sm w-full items-center px-2 md:px-0">
       <p>Created By: Oscar Lin</p>
       <div className="flex justify-center space-x-4">
         <Link
