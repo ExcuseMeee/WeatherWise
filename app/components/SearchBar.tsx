@@ -25,8 +25,7 @@ const SearchBar = () => {
     if (location.trim()) {
       router.push(`${location.trim()}`);
     } else {
-      // do something
-      console.log("no valid string");
+      // do nothing...
     }
   }
 

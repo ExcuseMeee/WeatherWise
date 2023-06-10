@@ -1,4 +1,4 @@
-import { GeoWeatherData, GeolocationData, WeatherData, Units } from "@/types";
+import { GeoWeatherData, GeolocationData, WeatherData } from "@/types";
 import WeatherDisplay from "../components/WeatherDisplay";
 
 type PageProps = {
@@ -6,7 +6,6 @@ type PageProps = {
     location: string;
   };
 };
-
 
 async function fetchWeather(location: string) {
   const geoResponse: Response = await fetch(
@@ -21,7 +20,7 @@ async function fetchWeather(location: string) {
     const geoData: GeolocationData = geolocationList.at(0)!;
     const weatherResponse: Response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?units=metric&lon=${geoData.lon}&lat=${geoData.lat}&appid=${process.env.WEATHER_API_KEY}`,
-      { next: { revalidate: 15 } }
+      { next: { revalidate: 0 } }
     );
 
     const weatherData: WeatherData = await weatherResponse.json();

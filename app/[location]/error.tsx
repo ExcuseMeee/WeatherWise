@@ -24,7 +24,7 @@ export default function Error({
       <p>Something went wrong!</p>
       <div className="flex items-center justify-center m-4">
         <ErrorOutlineIcon fontSize="medium" />
-        <p className="font-bold">Error: Location Not Found</p>
+        <p className="font-bold">Location Not Found</p>
       </div>
       <div className="flex space-x-10 mt-2">
         <button

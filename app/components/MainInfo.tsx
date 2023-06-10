@@ -7,12 +7,15 @@ import configureMeasurements, {
   length,
   speed,
   temperature,
+  pressure,
   LengthSystems,
   LengthUnits,
   SpeedSystems,
+  PressureSystems,
   SpeedUnits,
   TemperatureSystems,
   TemperatureUnits,
+  PressureUnits,
 } from "convert-units";
 
 type ComponentProps = {
@@ -20,43 +23,57 @@ type ComponentProps = {
   wind: Wind;
   visibility: WeatherData["visibility"];
 };
-type ConvertMeasures = "length" | "speed" | "temperature";
-type Systems = LengthSystems | SpeedSystems | TemperatureSystems;
-type ConvertUnits = LengthUnits | SpeedUnits | TemperatureUnits;
+
+export type ConvertMeasures = "length" | "speed" | "temperature" | "pressure";
+export type Systems =
+  | LengthSystems
+  | SpeedSystems
+  | TemperatureSystems
+  | PressureSystems;
+export type ConvertUnits =
+  | LengthUnits
+  | SpeedUnits
+  | TemperatureUnits
+  | PressureUnits;
+
 type Measures = {
   [key in Units]: {
     temperature: TemperatureUnits;
     windSpeed: SpeedUnits;
     visibility: LengthUnits;
+    pressure: PressureUnits;
   };
 };
 
-const PREFERRED_UNIT = "preferredUnit";
+const PREFERRED_UNIT = "preferredUnit" as const;
 const MEASURES: Measures = {
   imperial: {
     temperature: "F",
     windSpeed: "mph",
-    visibility: "ft",
+    visibility: "mi",
+    pressure: "psi",
   },
   metric: {
     temperature: "C",
     windSpeed: "m/s",
-    visibility: "m",
+    visibility: "km",
+    pressure: "bar",
   },
   standard: {
     temperature: "K",
     windSpeed: "m/s",
     visibility: "m",
+    pressure: "hPa",
   },
 };
 const convert = configureMeasurements<ConvertMeasures, Systems, ConvertUnits>({
   length,
   speed,
   temperature,
+  pressure,
 });
 
 const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
-
   const [units, setUnits] = useState<Units>(
     (localStorage.getItem(PREFERRED_UNIT) as Units) || "metric"
   );
@@ -78,7 +95,7 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
     <div className="lg:w-1/3 mt-4 md:w-1/2 w-4/5">
       <ChangeUnits setUnits={setUnits} units={units} />
       {/* Temperature Display */}
-      <div className="text-center text-7xl select-none">
+      <div className="text-center md:text-7xl select-none text-6xl">
         {convert(main.temp)
           .from("C")
           .to(MEASURES[units].temperature)
@@ -91,7 +108,7 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
       </div>
 
       {/* Wind Speed, Humidity, Pressure Display */}
-      <div className="flex justify-around mt-6 select-none">
+      <div className="flex justify-around mt-6 select-none md:text-base text-sm">
         <div className="weatherIcon">
           <Image
             src={"/wind-icon.png"}
@@ -126,7 +143,11 @@ const MainInfo = ({ main, wind, visibility }: ComponentProps) => {
             width={50}
           />
           <p>
-            {main.pressure} <span>hPa</span>
+            {convert(main.pressure)
+              .from("hPa")
+              .to(MEASURES[units].pressure)
+              .toPrecision(4)}{" "}
+            <span>{MEASURES[units].pressure}</span>
           </p>
         </div>
         <div className="weatherIcon">
