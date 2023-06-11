@@ -23,9 +23,7 @@ const WeatherDisplay = ({ geo, weather }: ComponentProps) => {
       <div className="flex flex-col select-none lg:w-1/3 md:w-1/2 w-4/5">
         <div className="flex justify-center -mt-12 -mb-14">
           <Image
-            src={`https://openweathermap.org/img/wn/${
-              weather.weather[0]!.icon
-            }@4x.png`}
+            src={`/conditions/${weather.weather[0]!.icon}.png`}
             alt={"Weather Icon"}
             width={250}
             height={250}
